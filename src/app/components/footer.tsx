@@ -1,7 +1,8 @@
-import { Separator } from '@/components/separator'
+
 import { GithubIcon, LinkedinIcon, TwitterIcon } from 'lucide-react'
 import Link from 'next/link'
 import config from '../config/site'
+import { Separator } from './separator'
 
 const data = [
 	{
