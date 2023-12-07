@@ -1,12 +1,36 @@
+'use client';
 import React, { useEffect, useMemo } from "react";
 import { HypercertClient, HypercertClientConfig } from "@hypercerts-org/sdk";
 import { BrowserProvider } from "ethers"
 import { WalletClient, useWalletClient, useNetwork } from "wagmi";
+import { DEFAULT_CHAIN_ID, 
+    
+    OVERRIDE_CHAIN_NAME,
+    OVERRIDE_GRAPH_URL,
+    CONTRACT_ADDRESS,
+    UNSAFE_FORCE_OVERRIDE_CONFIG, } from "@/lib/config";
 
 
 const clientConfig: Partial<HypercertClientConfig> = {
-    chainId: process.env.DEFAULT_CHAIN_ID || 5
-}
+    chainId: BigInt(DEFAULT_CHAIN_ID || 5)
+};
+
+// function loadOverridingConfig(clientConfig: Partial<HypercertClientConfig>) {
+      
+//     if (OVERRIDE_GRAPH_URL) {
+//       clientConfig.graphUrl = OVERRIDE_GRAPH_URL;
+//     }
+  
+//     if (CONTRACT_ADDRESS) {
+//       clientConfig.contractAddress = CONTRACT_ADDRESS;
+//     }
+  
+//     if (UNSAFE_FORCE_OVERRIDE_CONFIG) {
+//       clientConfig.unsafeForceOverrideConfig = UNSAFE_FORCE_OVERRIDE_CONFIG;
+//     }
+//   }
+//   loadOverridingConfig(clientConfig);
+
 const defaultClient = new HypercertClient(clientConfig);
 
 const walletClientToSigner = (walletClient: WalletClient) => {
@@ -41,7 +65,7 @@ export const useHypercertClient = () => {
         setIsLoading(true);
   
         const config = {
-          chainId: chain.id,
+          chainId: BigInt(chain.id),
           operator: signer,
         };
         try {
