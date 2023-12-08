@@ -66,7 +66,7 @@ export function HypercertFetcher(props: HypercertFetcherProps) {
         setData(hypercert);
       })(),
     );
-  }, [useQueryString, byClaimId, byMetadataUri]); //added client due to eslint complaining-check with pro
+  }, [useQueryString, byClaimId, byMetadataUri, client]); //added client due to eslint complaining-check with pro
 
   if (!ignoreLoading && !!loading && !data) {
     return <div className={className}> {loading} </div>;
@@ -79,6 +79,8 @@ export function HypercertFetcher(props: HypercertFetcherProps) {
         <h1>{data.name}</h1>
         <p>Total Units: {data.totalUnits.toString()}</p>
         <p>Metadata URI: {data.metadataUri}</p>
+        {console.log(data)}
+        <img src={data.metadata?.image}/>
 
       </>
     )}

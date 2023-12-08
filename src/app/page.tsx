@@ -3,31 +3,20 @@ import Footer from './components/footer';
 import Hero from './components/hero';
 import { Navigation } from './components/navigation';
 import { HypercertFetcher, HypercertFetcherProps } from './components/hypercert-fetcher';
+import { useState, useEffect } from 'react';
+import { HypercertClient } from '@hypercerts-org/sdk';
+import { DEFAULT_CHAIN_ID } from '@/lib/config';
 
-const products: Product[] = [
-  {
-    title: '',
-    description: '',
-    tags: ['']
-  },
-  {
-    title: '',
-    description: '',
-    tags: ['']
-  },
-  {
-    title: '',
-    description: '',
-    tags: ['']
-  },
-  {
-    title: '',
-    description: '',
-    tags: ['']
-  }
-];
+
 
 export default function Home() {
+  const [projects, setProjects] = useState([])
+
+  useEffect(()=> {
+    const client = new HypercertClient({
+      chain: { id: DEFAULT_CHAIN_ID }
+    })
+  })
   return (
     <>
       <header>
@@ -37,7 +26,7 @@ export default function Home() {
         <Hero />
         {/*<ClaimPreviewGrid products={products} /> */}
         <HypercertFetcher
-          byClaimId=""
+          byClaimId="0x822f17a9a5eecfd66dbaff7946a8071c265d1d07-187155301806516154904856034087472516300800"
           byMetadataUri=""
           useQueryString={true}
           ignoreLoading={false}

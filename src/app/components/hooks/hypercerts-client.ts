@@ -10,10 +10,11 @@ import { DEFAULT_CHAIN_ID,
     CONTRACT_ADDRESS,
     UNSAFE_FORCE_OVERRIDE_CONFIG, } from "@/lib/config";
 
-
+const chainId = process.env.NEXT_PUBLIC_CHAIN_ID || 5
 const clientConfig: Partial<HypercertClientConfig> = {
-    chainId: BigInt(DEFAULT_CHAIN_ID || 5)
+    chain: { id: Number(chainId) }
 };
+console.log(clientConfig)
 
 // function loadOverridingConfig(clientConfig: Partial<HypercertClientConfig>) {
       
@@ -32,6 +33,8 @@ const clientConfig: Partial<HypercertClientConfig> = {
 //   loadOverridingConfig(clientConfig);
 
 const defaultClient = new HypercertClient(clientConfig);
+console.log(clientConfig)
+
 
 const walletClientToSigner = (walletClient: WalletClient) => {
     const { account, chain, transport } = walletClient;
