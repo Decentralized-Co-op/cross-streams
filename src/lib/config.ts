@@ -18,7 +18,7 @@ export const requireEnv = (value: string | undefined, identifier: string) => {
 //       "NEXT_PUBLIC_DEFAULT_CHAIN_ID",
 //     ),
 //   );
-  export const DEFAULT_CHAIN_ID: bigint = BigInt(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID || 5);
+export const DEFAULT_CHAIN_ID = Number(process.env.NEXT_PUBLIC_DEFAULT_CHAIN_ID ?? 5);
 
   
   export const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
